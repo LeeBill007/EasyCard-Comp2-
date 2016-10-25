@@ -1,0 +1,87 @@
+﻿@model EasyCardSystem.Models.RecordDataViewModel
+@{
+    ViewBag.Title = "AdmEdit";
+}
+
+<h2>AdmEdit 確認預約/修改頁</h2>
+<form id="editForm" action="AdmEdit" method="post">
+    <div class="form-horizontal ">
+        <div class="form-group">            
+            <input type="hidden" value=@Model.RecordID name="recordid" class="text-info col-md-10">
+        </div>       
+        <div class="form-group">
+            <label class="col-md-2 ">EmpID</label>
+            <input type="text" value=@Model.EmpID name="empid" class="text-info col-md-10">
+        </div>
+        <div class="form-group">
+            <label class="col-md-2 ">CardName</label>
+            <input type="text" value=@Model.CardName name="cardname" class="text-info col-md-10">
+        </div>
+        <div class="form-group">
+            <label class="col-md-2 ">TimeLend</label>
+            <input type="text" value=@Model.TimeLend id="timelend" name="timelend" class="text-info col-md-10">
+        </div>
+        <div class="form-group">
+            <label class="col-md-2 ">UseDay</label>
+            <input type="text" value=@Model.UseDay name="useday" class="text-info col-md-10">
+        </div>
+        <div class="form-group">
+            <input type="submit" value="儲存修改" class="btn btn-default" />
+        </div>
+    </div>
+</form>
+<div>
+    @Html.ActionLink("回預約管理畫面", "AdmBorrowIndex")
+</div>
+
+@*dateTime Picker*@
+<script language="JavaScript">
+    $(document).ready(function () {
+        $("#timelend").datepicker({ dateFormat: "yy-mm-dd" });
+    });
+</script>
+
+@*form validation*@
+<script src="~/Scripts/jquery.validate.js"></script>
+<script>
+    $(function () {
+        $('#createForm').validate({
+            errorClass: "my-error-class",
+            event: "blur",
+            rules: {               
+                empid: {
+                    required: true,
+                    minlength: 2
+                },
+                cardname: {
+                    required: true,
+                    minlength: 2
+                },
+                timelend: {
+                    required: true,
+                    minlength: 2
+                },
+                useday: {
+                    required: true
+                }
+            },
+            messages: {               
+                empid: {
+                    required: "请输入員工編號",
+                    minlength: "至少2位數"
+                },
+                cardname: {
+                    required: "请输入卡片名稱",
+                    minlength: "至少2位數"
+                },
+                timelend: {
+                    required: "请輸入借用時間"
+                },
+                useday: {
+                    required: "请输入借用天數"
+                }
+
+            }
+        })
+    })
+</script>

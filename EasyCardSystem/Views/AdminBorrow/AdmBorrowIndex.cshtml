@@ -1,0 +1,41 @@
+﻿@model List<EasyCardSystem.Models.RecordDataViewModel>
+@{
+    ViewBag.Title = "AdmBorrowIndex";
+}
+
+<h2>AdmBorrowIndex 預約管理頁</h2>
+<form action="" method="post">
+    <input type="text" name="empid" class="text-info ">&nbsp
+    <input type="submit" value="搜尋員編" class="btn btn-info ">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+    <a href='@Url.Action("AdmBorrow" )?' class="btn btn-info">現場借用</a>&nbsp&nbsp
+    <a href='@Url.Action("AdmReturnIndex" )?' class="btn btn-info">歸還畫面</a>
+</form>
+<br />
+<table class="table table-bordered  table-hover">
+    <tr  class="success">
+        <td>功能</td>
+        <td>RecordID</td>
+        <td>EmpID</td>
+        <td>EmpName</td>
+        <td>EmpDept</td>
+        <td>TimeLend</td>
+        <td>EmpState</td>
+        <td>UseDay</td>
+    </tr>
+    
+    @foreach (var item in Model)
+    {
+        <tr>
+            @* 確認&修改連結 *@
+            <td><a href='@Url.Action("AdmEdit")?recorid=@item.RecordID'>確認預約/修改</a></td>
+            <td>@item.RecordID</td>             
+            <td>@item.EmpID</td>
+            <td>@item.EmpName</td>
+            <td>@item.EmpDept</td>
+            <td>@item.TimeLend.ToString("d")</td>
+            <td>@item.EmpState</td>
+            <td>@item.UseDay</td>
+        </tr>
+    }
+
+</table>

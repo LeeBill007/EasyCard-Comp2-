@@ -1,0 +1,15 @@
+﻿
+@if (Session["EmpID"] != null)
+{
+    <ul class="nav navbar-nav navbar-right">
+        
+        <li>@Html.ActionLink("Hello!!! " + Session["EmpID"],"","")</li>
+        <li>@Html.ActionLink("登出 ", "Logout", "Home")</li>
+    </ul>
+}
+else
+{
+    <ul class="nav navbar-nav navbar-right">
+        <li>@Html.ActionLink("登入", "Login", "Home", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+    </ul>
+}

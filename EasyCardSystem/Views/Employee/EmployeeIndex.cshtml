@@ -1,0 +1,52 @@
+﻿@model List<EasyCardSystem.Models.EmpData>
+@{
+    ViewBag.Title = "EmployeeIndex";
+}
+
+<h2>EmployeeIndex</h2>
+<form action="" method="post">
+    <input type="text" name="empid" class="text-info ">&nbsp
+    <input type="submit" value="搜尋" class="btn btn-info ">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+    <a href='@Url.Action("EmpCreate" )?' class="btn btn-info">新增</a>
+</form>
+
+
+<br />
+
+<table class="table table-bordered table-hover ">
+    <tr  class="success">
+        <td>功能</td>
+        <td>EmpID</td>
+        <td>EmpardCode</td>
+        <td>EmpDept</td>
+        <td>EmpName</td>
+        <td>Email</td>
+        <td>EmpState</td>
+        <td>Role</td>
+
+    </tr>
+    @foreach (var item in Model) //C#程式碼
+
+    {
+        <tr>
+            <td>
+                <a href='@Url.Action("EmpEdit")?empid=@item.EmpID'>修改</a>
+                @*@Ajax.ActionLink("刪除", "CardDelete", "Card", new { cardid = item.CardID }, new AjaxOptions() { HttpMethod = "delete", Confirm = "確定要刪除這筆資料嗎?", UpdateTargetId = "indexcard" })*@
+                @*刪除並有確認視窗*@
+                @Html.ActionLink("刪除", "EmpDelete", new { empid = item.EmpID }, new { onclick = "return confirm('確定刪除這筆資料嗎?');" })
+            </td>
+            <td>@item.EmpID</td>
+            <td>@item.EmpCardCode</td>
+            <td>@item.EmpDept</td>
+            <td>@item.EmpName</td>
+            <td>@item.Email</td>
+            <td>@item.EmpState</td>
+            <td>@item.Role</td>
+
+        </tr>
+    }
+
+</table>
+<div>
+    @Html.ActionLink("回到員工管理", "EmployeeIndex")
+</div>

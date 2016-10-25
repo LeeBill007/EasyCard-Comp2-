@@ -1,0 +1,54 @@
+﻿@model List<EasyCardSystem.Models.RecordDataViewModel>
+@{
+    ViewBag.Title = "AllRecordIndex";
+}
+
+<h2>AllRecordIndex</h2>
+<form action="" method="post">
+    <label>員編</label>
+    <input type="text" name="empid" class="text-info ">&nbsp&nbsp
+    <label>卡片名稱</label>
+    <input type="text" name="cardname" class="text-info ">&nbsp&nbsp
+    <label>借用日期</label>
+    <input type="text" name="timelend" class="text-info ">&nbsp&nbsp
+    <input type="submit" value="搜尋" class="btn btn-info "><br />    
+</form>
+
+
+<table class="table table-bordered  table-hover">
+    <tr  class="success">        
+        <td>RecordID</td>
+        <td>EmpID</td>
+        <td>EmpName</td>
+        <td>EmpDept</td>
+        <td>EmpState</td>
+        <td>CardName</td>
+        <td>TimeLend</td>
+        <td>TimeReturn</td>
+        <td>CardState</td>
+        <td>UseDay</td>
+        <td>CardAmount</td>
+        <td>TotalSpent</td>
+
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.RecordID</td>
+            <td>@item.EmpID</td>
+            <td>@item.EmpName</td>
+            <td>@item.EmpDept</td>
+            <td>@item.EmpState</td>
+            <td>@item.CardName</td>
+            <td>@item.TimeLend.ToString("d")</td>
+            <td>@item.TimeReturn</td>
+            <td>@item.CardState</td>
+            <td>@item.UseDay</td>
+            <td>@item.CardAmount</td>
+            <td>@item.TotalSpent</td>
+        </tr>
+    }
+</table>
+
+
+

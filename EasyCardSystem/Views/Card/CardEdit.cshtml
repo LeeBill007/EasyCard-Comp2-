@@ -1,0 +1,92 @@
+﻿@model EasyCardSystem.Models.CardData
+@{
+    ViewBag.Title = "CardEdit";
+}
+
+<h2>卡片資料修改</h2>
+<form id="editForm"  action="CardEdit" method="post">
+    <div class="form-horizontal ">
+        <div class="form-group">
+            <label class="col-md-2 ">CardID</label>
+            <input type="text" value=@Model.CardID name="cardid" class="text-info col-md-10">
+        </div>
+        <div class="form-group">
+            <label class="col-md-2 ">CardDept</label>
+            <input type="text" value=@Model.CardDept name="carddept" class="text-info col-md-10">
+        </div>
+        <div class="form-group">
+            <label class="col-md-2 ">CardName</label>
+            <input type="text" value=@Model.CardName name="cardname" class="text-info col-md-10">
+        </div>
+        <div class="form-group">
+            <label class="col-md-2 ">CardState</label>
+            <input type="text" value=@Model.CardState name="cardstate" class="text-info col-md-10">
+        </div>
+        <div class="form-group">
+            <label class="col-md-2 ">CardAmount</label>
+            <input type="text" value=@Model.CardAmount name="cardamount" class="text-info col-md-10">
+        </div>
+        <div class="form-group">
+            <input type="submit" value="儲存修改" class="btn btn-default" />
+        </div>
+    </div>
+</form>
+
+    <div>
+        @Html.ActionLink("Back to List", "CardIndex")
+    </div>
+
+@*form validation*@
+<script src="~/Scripts/jquery.validate.js"></script>
+<script>
+    $(function () {
+        $('#editForm').validate({
+            errorClass: "my-error-class",
+            event: "blur",
+            rules: {
+                cardid: {
+                    required: true,
+                    minlength: 2  //之後要修改成10
+                },
+                carddept: {
+                    required: true,
+                    minlength: 2
+                },
+                cardname: {
+                    required: true,
+                    minlength: 2
+                },
+                cardstate: {
+                    required: true,
+                    minlength: 2
+                },
+                cardamount: {
+                    required: true,
+                    minlength: 2
+                }               
+            },
+            messages: {
+                cardid: { required: "请務必输入",
+                          minlength: "至少10位數"
+                },
+                carddept: {
+                    required: "请務必输入",
+                    minlength: "至少2位數"
+                },
+                cardname: {
+                    required: "请務必输入",
+                    minlength: "至少2位數"
+                },
+                cardstate: {
+                    required: "请務必输入",
+                    minlength: "至少2位數"
+                },
+                cardamount: {
+                    required: "请務必输入",
+                    minlength: "至少2位數"
+                }
+
+            }
+        })
+    })
+</script>

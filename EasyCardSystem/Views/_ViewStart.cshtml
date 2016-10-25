@@ -1,0 +1,20 @@
+﻿@{
+    var controller = HttpContext.Current.Request.RequestContext.RouteData.Values["Controller"].ToString();
+    string cLayout = "";
+    if (controller == "AdminBorrow" || controller == "AllRecord" || controller == "Card" || controller == "Employee")
+    {
+        cLayout = "~/Views/Shared/AdminLayout.cshtml";
+    }
+    else if (controller == "UserBorrow")
+    {
+        cLayout = "~/Views/Shared/UserLayout .cshtml";
+
+    }
+    else
+    {
+        cLayout = "~/Views/Shared/LoginLayout .cshtml";
+
+    }
+    Layout = cLayout;
+    
+}

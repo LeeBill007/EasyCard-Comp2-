@@ -1,0 +1,37 @@
+﻿@model EasyCardSystem.Models.RecordDataViewModel
+@{
+    ViewBag.Title = "AdmReturnConfirm";
+}
+
+<h2>AdmReturnConfirm 歸還確認頁</h2>
+<form id="editForm" action="AdmReturnConfirm" method="post">
+    <div class="form-horizontal ">
+        <div class="form-group">
+            <input type="hidden" value=@Model.RecordID name="recordid" class="text-info col-md-10">
+        </div>
+        <div class="form-group">
+            <label class="col-md-2 ">EmpID</label>
+            <input type="text" value=@Model.EmpID name="empid" class="text-info col-md-10">
+        </div>
+        <div class="form-group">
+            <label class="col-md-2 ">CardName</label>
+            <input type="text" value=@Model.CardName name="cardname" class="text-info col-md-10">
+        </div>
+        <div class="form-group">
+            <label class="col-md-2 ">TimeLend</label>
+            <input type="text" value=@Model.TimeLend name="timelend" class="text-info col-md-10">
+        </div>
+        <div class="form-group">
+            <label class="col-md-2 ">UseDay</label>
+            <input type="text" value=@Model.UseDay name="useday" class="text-info col-md-10">
+        </div>
+        <div class="form-group">
+            <label class="col-md-2 ">CardAmount</label>
+            <input type="text"                     name="cardamount" class="text-info col-md-10">
+        </div>
+        <div class="form-group">
+            <input type="submit" value="儲存修改" class="btn btn-default" />
+        </div>
+    </div>
+</form>
+

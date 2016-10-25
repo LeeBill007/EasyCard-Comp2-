@@ -1,0 +1,45 @@
+﻿@model List<EasyCardSystem.Models.RecordDataViewModel>
+@{
+    ViewBag.Title = "UserRecord";
+}
+
+<h2>UserRecord</h2>
+<table class="table table-bordered  table-hover">
+    <tr class="success">
+        <td>RecordID</td>
+        <td>CardID</td>
+        <td>CardName</td>
+        <td>TimeLend</td>
+        <td>TimeReturn</td>
+        <td>UseDay</td>
+        <td>功能</td>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.RecordID</td>
+            <td>@item.CardID</td>
+            <td>@item.CardName</td>
+            <td>@item.TimeLend.ToString("d")</td>
+            <td>@item.TimeReturn</td>
+            <td>@item.UseDay</td>
+
+            @*使用者紀錄中，修改、取消、續借*@
+            @if (@item.RecordState == "已預約")
+            {
+                <td>
+                    @Html.ActionLink("修改", "UserEdit", new { recordid = item.RecordID })&nbsp&nbsp
+                    @Html.ActionLink("取消", "UserDelete", new { recordid = item.RecordID }, new { onclick = "return confirm('確定取消預約嗎?')" })
+                </td>
+            }
+            else if (@item.RecordState == "未歸還")
+            {
+                <td>@Html.ActionLink("續借", "UserRenew", new { recordid = item.RecordID }, new { onclick = "return confirm('系統已為您續借5天')" })</td>
+            }
+            else
+            {
+            <td></td>}
+        </tr>
+    }
+</table>
+

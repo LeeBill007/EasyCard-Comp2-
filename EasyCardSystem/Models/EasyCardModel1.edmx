@@ -1,0 +1,187 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="EasyCardModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CardData">
+          <Key>
+            <PropertyRef Name="CardID" />
+          </Key>
+          <Property Name="CardID" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CardDept" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="CardName" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="CardState" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="CardAmount" Type="int" Nullable="false" />
+          <Property Name="CardDisable" Type="varchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EmpData">
+          <Key>
+            <PropertyRef Name="EmpID" />
+          </Key>
+          <Property Name="EmpID" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="EmpCardCode" Type="varchar" MaxLength="30" />
+          <Property Name="EmpDept" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="EmpName" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="EmpPwd" Type="varchar" MaxLength="20" />
+          <Property Name="Email" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="EmpState" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Role" Type="varchar" MaxLength="20" />
+          <Property Name="EmpDisable" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RecordData">
+          <Key>
+            <PropertyRef Name="RecordID" />
+          </Key>
+          <Property Name="RecordID" Type="int" Nullable="false" />
+          <Property Name="EmpID" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="CardID" Type="varchar" MaxLength="20" />
+          <Property Name="TimeLend" Type="datetime" Nullable="false" />
+          <Property Name="TimeReturn" Type="datetime" />
+          <Property Name="UseDay" Type="int" Nullable="false" />
+          <Property Name="RecordState" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="TotalSpent" Type="int" />
+          <Property Name="RecordDisable" Type="varchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_EmpData_EmpData">
+          <End Role="EmpData" Type="Self.EmpData" Multiplicity="1" />
+          <End Role="EmpData1" Type="Self.EmpData" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="EmpData">
+              <PropertyRef Name="EmpID" />
+            </Principal>
+            <Dependent Role="EmpData1">
+              <PropertyRef Name="EmpID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="EasyCardModelStoreContainer">
+          <EntitySet Name="CardData" EntityType="Self.CardData" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EmpData" EntityType="Self.EmpData" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RecordData" EntityType="Self.RecordData" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_EmpData_EmpData" Association="Self.FK_EmpData_EmpData">
+            <End Role="EmpData" EntitySet="EmpData" />
+            <End Role="EmpData1" EntitySet="EmpData" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="EasyCardModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="CardData">
+          <Key>
+            <PropertyRef Name="CardID" />
+          </Key>
+          <Property Name="CardID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CardDept" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CardName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CardState" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CardAmount" Type="Int32" Nullable="false" />
+          <Property Name="CardDisable" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EmpData">
+          <Key>
+            <PropertyRef Name="EmpID" />
+          </Key>
+          <Property Name="EmpID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="EmpCardCode" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="EmpDept" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="EmpPwd" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="EmpName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="EmpState" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Role" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="EmpDisable" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          </EntityType>
+        <EntityType Name="RecordData">
+          <Key>
+            <PropertyRef Name="RecordID" />
+          </Key>
+          <Property Name="RecordID" Type="Int32" Nullable="false" />
+          <Property Name="EmpID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CardID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="TimeLend" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="TimeReturn" Type="DateTime" Precision="3" />
+          <Property Name="UseDay" Type="Int32" Nullable="false" />
+          <Property Name="TotalSpent" Type="Int32" />
+          <Property Name="RecordDisable" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="RecordState" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityContainer Name="EasyCardEntities4" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CardData" EntityType="Self.CardData" />
+          <EntitySet Name="EmpData" EntityType="Self.EmpData" />
+          <EntitySet Name="RecordData" EntityType="Self.RecordData" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="EasyCardModelStoreContainer" CdmEntityContainer="EasyCardEntities4">
+          <EntitySetMapping Name="CardData">
+            <EntityTypeMapping TypeName="EasyCardModel.CardData">
+              <MappingFragment StoreEntitySet="CardData">
+                <ScalarProperty Name="CardID" ColumnName="CardID" />
+                <ScalarProperty Name="CardDept" ColumnName="CardDept" />
+                <ScalarProperty Name="CardName" ColumnName="CardName" />
+                <ScalarProperty Name="CardState" ColumnName="CardState" />
+                <ScalarProperty Name="CardAmount" ColumnName="CardAmount" />
+                <ScalarProperty Name="CardDisable" ColumnName="CardDisable" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EmpData">
+            <EntityTypeMapping TypeName="EasyCardModel.EmpData">
+              <MappingFragment StoreEntitySet="EmpData">
+                <ScalarProperty Name="EmpID" ColumnName="EmpID" />
+                <ScalarProperty Name="EmpCardCode" ColumnName="EmpCardCode" />
+                <ScalarProperty Name="EmpDept" ColumnName="EmpDept" />
+                <ScalarProperty Name="EmpPwd" ColumnName="EmpPwd" />
+                <ScalarProperty Name="EmpName" ColumnName="EmpName" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="EmpState" ColumnName="EmpState" />
+                <ScalarProperty Name="Role" ColumnName="Role" />
+                <ScalarProperty Name="EmpDisable" ColumnName="EmpDisable" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RecordData">
+            <EntityTypeMapping TypeName="EasyCardModel.RecordData">
+              <MappingFragment StoreEntitySet="RecordData">
+                <ScalarProperty Name="RecordState" ColumnName="RecordState" />
+                <ScalarProperty Name="RecordID" ColumnName="RecordID" />
+                <ScalarProperty Name="EmpID" ColumnName="EmpID" />
+                <ScalarProperty Name="CardID" ColumnName="CardID" />
+                <ScalarProperty Name="TimeLend" ColumnName="TimeLend" />
+                <ScalarProperty Name="TimeReturn" ColumnName="TimeReturn" />
+                <ScalarProperty Name="UseDay" ColumnName="UseDay" />
+                <ScalarProperty Name="TotalSpent" ColumnName="TotalSpent" />
+                <ScalarProperty Name="RecordDisable" ColumnName="RecordDisable" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="無" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

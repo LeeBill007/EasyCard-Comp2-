@@ -1,0 +1,39 @@
+﻿@model List<EasyCardSystem.Models.RecordDataViewModel>
+@{
+    ViewBag.Title = "AdmReturnIndex";
+}
+
+<h2>AdmReturnIndex 歸還管理頁</h2>
+<form action="" method="post">
+    <input type="text" name="cardname" class="text-info ">&nbsp
+    <input type="submit" value="卡片名稱搜尋" class="btn btn-info ">
+</form>
+<br />
+<table class="table table-bordered  table-hover">
+    <tr class="success">
+        <td>功能</td>
+        <td>RecordID</td>
+        <td>EmpID</td>
+        <td>EmpName</td>
+        <td>EmpDept</td>
+        <td>CardName</td>
+        <td>TimeLend</td>
+        <td>EmpState</td>
+        <td>UseDay</td>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            @* 確認歸還 *@
+            <td><a href='@Url.Action("AdmReturnConfirm")?recorid=@item.RecordID'>確認歸還</a></td>                
+            <td>@item.RecordID</td>
+            <td>@item.EmpID</td>
+            <td>@item.EmpName</td>
+            <td>@item.EmpDept</td>
+            <td>@item.CardName</td>
+            <td>@item.TimeLend.ToString("d")</td>
+            <td>@item.EmpState</td>
+            <td>@item.UseDay</td>
+        </tr>
+    }
+</table>
